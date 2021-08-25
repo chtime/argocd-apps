@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea 
+  namespace: argocd 
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    helm:
+      parameters:
+        - name: admin.username 
+          value: "till"
+        - name: admin.password
+          value: "passw0rd"
+        - name: admin.email
+          value: "till.meyerzuwestram@zuehlke.com"
+        - name: config.APP_NAME
+          value: "argocd gitea"
+        - name: config.server.DOMAIN
+          value: "gitea.{{ .Values.spec.domain }}"
+        - name: config.server.SSH_DOMAIN
+          value: "gitea.{{ .Values.spec.domain }}"
+        - name: config.server.SSH_PORT
+          value: 22
+        - name: config.server.SSH_LISTEN_PORT
+          value: 22
+      chart: gitea
+      repoURL: https://dl.gitea.io/charts/gitea-charts
+    repoURL: {{ .Values.spec.repo }} 
+    targetRevision: HEAD
+    path: gitea 
+  destination:
+    server: {{ .Values.spec.destination.server }} 
+    namespace: default
+
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitea-ingress-route 
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`gitea.k3s.internal`)
+    kind: Rule
+    services:
+    - name: gitea-http 
+      port: 3000
+      targetPort: 80
