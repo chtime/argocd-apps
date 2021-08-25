@@ -1,37 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: default
-  name: whoami
-  labels:
-    app: whoami
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: whoami
-  template:
-    metadata:
-      labels:
-        app: whoami
-    spec:
-      containers:
-        - name: whoami
-          image: traefik/whoami
-          ports:
-            - name: web
-              containerPort: 80
----
-apiVersion: v1
-kind: Service
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: whoami
+  namespace: argocd 
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
-  ports:
-    - port: 80
-      targetPort: web
-  selector:
-    app: whoami
+  project: default
+  source:
+    repoURL: {{ .Values.spec.repo }} 
+    targetRevision: HEAD
+    path: whoami
+  destination:
+    server: {{ .Values.spec.destination.server }} 
+    namespace: default
+
 ---
 
 apiVersion: traefik.containo.us/v1alpha1
@@ -44,8 +27,8 @@ spec:
     - web
   routes:
   - match: Host(`whoami.{{ .Values.spec.domain }}`)
-    #Host(`whoami.k3s.internal`) && PathPrefix(`/whoami`)
     kind: Rule
     services:
     - name: whoami
-      port: 80
+      port: 80 
+      targetPort: 80

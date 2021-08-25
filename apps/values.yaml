@@ -1,5 +1,6 @@
 spec:
   domain: k3s.internal
+  repo: https://github.com/chtime/argocd-apps.git
   destination:
     server: https://kubernetes.default.svc
 
