@@ -12,7 +12,7 @@ spec:
     targetRevision: HEAD
     path: guestbook
   destination:
-    server: {{ .Values.spec.domain }} 
+    server: {{ .Values.spec.destination.server }} 
     namespace: default
 
 ---
