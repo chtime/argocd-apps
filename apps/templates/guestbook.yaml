@@ -20,7 +20,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: argocd-guestbook-ingress-route 
+  name: guestbook-ingress-route 
   namespace: default
 spec:
   entryPoints:
