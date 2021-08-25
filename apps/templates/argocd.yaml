@@ -8,10 +8,10 @@ metadata:
 spec:
   project: default
   source:
-    helm:
-      parameters:
-        - name: server.extraArgs 
-          value: "--insecure"
+    #helm:
+    #  parameters:
+    #    - name: server.extraArgs 
+    #      value: "--insecure"
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.1.0 
@@ -48,7 +48,6 @@ spec:
     certResolver: default
     options: {}
 
----
 
 #apiVersion: v1
 #kind: ConfigMap
