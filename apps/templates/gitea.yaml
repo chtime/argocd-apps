@@ -28,7 +28,7 @@ spec:
           value: "22"
     chart: gitea
     repoURL: https://dl.gitea.io/charts/gitea-charts
-    #targetRevision: 1.14.6 
+    targetRevision: 1.14.6 
     path: gitea 
   destination:
     server: {{ .Values.spec.destination.server }} 
