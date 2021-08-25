@@ -27,7 +27,7 @@ spec:
         - name: config.server.SSH_LISTEN_PORT
           value: "22"
     chart: gitea
-    repoURL: https://dl.gitea.io/charts/gitea-charts
+    repoURL: https://dl.gitea.io/charts/
     targetRevision: 1.14.6 
     path: gitea 
   destination:
