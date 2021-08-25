@@ -1,4 +1,5 @@
 spec:
+  domain: k3s.internal
   destination:
     server: https://kubernetes.default.svc
 
