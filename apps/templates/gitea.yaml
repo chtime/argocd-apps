@@ -26,9 +26,8 @@ spec:
           value: 22
         - name: config.server.SSH_LISTEN_PORT
           value: 22
-      chart: gitea
-      repoURL: https://dl.gitea.io/charts/gitea-charts
-    repoURL: {{ .Values.spec.repo }} 
+    chart: gitea
+    repoURL: https://dl.gitea.io/charts/gitea-charts
     targetRevision: HEAD
     path: gitea 
   destination:
