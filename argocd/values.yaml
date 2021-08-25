@@ -1,4 +1,5 @@
 argo-cd:
+  # --insecure is required since the ingress controller does TLS termination.
   server:
     extraArgs:
       - "--insecure"
