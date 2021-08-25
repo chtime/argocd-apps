@@ -10,22 +10,16 @@ spec:
   source:
     helm:
       parameters:
-        - name: admin.username 
+        - name: gitea.admin.username 
           value: "till"
-        - name: admin.password
-          value: "passw0rd"
-        - name: admin.email
+        - name: gitea.admin.email
           value: "till.meyerzuwestram@zuehlke.com"
-        - name: config.APP_NAME
+        - name: gitea.config.APP_NAME
           value: "argocd gitea"
-        - name: config.server.DOMAIN
+        - name: gitea.config.server.DOMAIN
           value: "gitea.{{ .Values.spec.domain }}"
-        - name: config.server.SSH_DOMAIN
+        - name: gitea.config.server.SSH_DOMAIN
           value: "gitea.{{ .Values.spec.domain }}"
-        - name: config.server.SSH_PORT
-          value: "22"
-        - name: config.server.SSH_LISTEN_PORT
-          value: "22"
     chart: gitea
     repoURL: https://dl.gitea.io/charts/
     targetRevision: 4.0.3 
