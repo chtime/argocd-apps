@@ -14,7 +14,7 @@ spec:
           value:
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: HEAD
+    targetRevision: 2.1.0 
   destination:
     server: {{ .Values.spec.destination.server }} 
     namespace: argocd 
