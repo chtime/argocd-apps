@@ -20,8 +20,8 @@ spec:
           value: "gitea.{{ .Values.spec.domain }}"
         - name: gitea.config.server.SSH_DOMAIN
           value: "gitea.{{ .Values.spec.domain }}"
-        - name: gitea.config.server.ROOT_URL
-          value: "https://gitea.{{ .Values.spec.domain }}"
+      # - name: gitea.config.server.ROOT_URL
+      #   value: "https://gitea.{{ .Values.spec.domain }}"
     chart: gitea
     repoURL: https://dl.gitea.io/charts/
     targetRevision: 4.0.3 
