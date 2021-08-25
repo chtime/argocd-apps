@@ -20,6 +20,10 @@ spec:
           value: "gitea.{{ .Values.spec.domain }}"
         - name: gitea.config.server.SSH_DOMAIN
           value: "gitea.{{ .Values.spec.domain }}"
+        - name: service.ssh.type
+          value: "NodePort"
+        - name: service.ssh.nodePort
+          value: "32767"
       # - name: gitea.config.server.ROOT_URL
       #   value: "https://gitea.{{ .Values.spec.domain }}"
     chart: gitea
@@ -49,18 +53,18 @@ spec:
       targetPort: 80
 
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: gitea-ssh-nodeport
-  namespace: default
-spec:
-  type: NodePort
-  ports:
-    - port: 22
-      targetPort: 22
-      nodePort: 22
-      protocol: TCP
-  selector:
-    name: gitea-ssh
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: gitea-ssh-nodeport
+#  namespace: default
+#spec:
+#  type: NodePort
+#  ports:
+#    - port: 22
+#      targetPort: 22
+#      nodePort: 22
+#      protocol: TCP
+#  selector:
+#    name: gitea-ssh
 
