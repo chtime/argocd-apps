@@ -10,8 +10,8 @@ spec:
   source:
     helm:
       parameters:
-        - name:
-          value:
+        - name: server.extraArgs 
+          value: "--insecure"
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.1.0 
@@ -50,15 +50,15 @@ spec:
 
 ---
 
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app.kubernetes.io/name: argocd-cmd-params-cm
-    app.kubernetes.io/part-of: argocd
-  name: argocd-cmd-params-cm
-data:
-  server.insecure: "true"
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  labels:
+#    app.kubernetes.io/name: argocd-cmd-params-cm
+#    app.kubernetes.io/part-of: argocd
+#  name: argocd-cmd-params-cm
+#data:
+#  server.insecure: "true"
 
 # to have this applied, restart the argocd-server deployment:
 # kubectl scale -n argocd deployment/argocd-server --replicas=0
