@@ -20,6 +20,8 @@ spec:
           value: "gitea.{{ .Values.spec.domain }}"
         - name: gitea.config.server.SSH_DOMAIN
           value: "gitea.{{ .Values.spec.domain }}"
+        - name: gitea.config.server.ROOT_URL
+          value: "https://gitea.{{ .Values.spec.domain }}"
     chart: gitea
     repoURL: https://dl.gitea.io/charts/
     targetRevision: 4.0.3 
@@ -39,9 +41,10 @@ spec:
   entryPoints:
     - web
   routes:
-  - match: Host(`gitea.k3s.internal`)
+  - match: Host(`gitea.{{ .Values.spec.domain }}`)
     kind: Rule
     services:
     - name: gitea-http 
       port: 3000
       targetPort: 80
+
