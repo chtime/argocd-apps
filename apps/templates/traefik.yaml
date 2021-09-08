@@ -10,7 +10,7 @@ spec:
   source:
     chart: traefik 
     repoURL: https://helm.traefik.io/traefik 
-    targetRevision: 2.5.1 
+    targetRevision: 10.3.2
     path: traefik 
   destination:
     server: {{ .Values.spec.destination.server }} 
