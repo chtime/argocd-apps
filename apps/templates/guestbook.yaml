@@ -31,4 +31,4 @@ spec:
     services:
     - name: guestbook-ui 
       port: 80 
-      targetPort: 80
+      #targetPort: 80
