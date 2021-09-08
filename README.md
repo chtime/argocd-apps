@@ -16,3 +16,16 @@ This is a repository to build a k8s based, argocd-orchestrated software thingama
 6. Sync argocd to configure ingress: `argocd app sync argocd`
 7. Login again under the new ingress: `argocd login argocd.k3s.internal`
 8. Initialize the other applications
+
+
+### WIP
+
+
+```
+# syncing traefik CDR first, so that the other resources can be interpreted
+argocd app sync apps --local apps --resource argoproj.io:Application:traefik
+
+# currently, for some reason metallb is not initialized properly
+helm repo add metallb https://metallb.github.io/metallb
+helm install metallb metallb/metallb -f metallb/values.yaml
+```
